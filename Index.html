@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio de Nathan Polette - Étudiant en ingénierie informatique">
+    <title>Polette Nathan - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #658c79;
+            --color-primary-dark: #597a6a;
+            --color-background: #262732;
+            --color-surface: #3e3e53;
+            --color-surface-hover: #4a4a63;
+            --color-text: #f7f7f7;
+        }
+
+        .font-aptos {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Fixed background content */
+        .background-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* Interactive elements */
+        .interactive {
+            pointer-events: auto;
+            position: relative;
+            z-index: 20;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Projects section */
+        #projets {
+            position: relative;
+            z-index: 30;
+        }
+
+        /* Navigation */
+        .nav-fixed {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+        }
+
+        /* Spacers for parallax */
+        .spacer {
+            height: 42vh;
+            pointer-events: none;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus styles */
+        a:focus, button:focus {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        /* Triangle sections */
+        .triangle-section {
+            position: relative;
+            height: 120px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#262732] text-[#f7f7f7] font-aptos">
+    <!-- Navigation -->
+    <nav class="nav-fixed">
+        <div class="h-20 bg-[#3E3E53] shadow-2xl" aria-label="Navigation principale">
+            <div class="container mx-auto h-full px-4 flex items-center justify-center space-x-40">
+                <a href="#projets" class="interactive text-2xl font-bold hover:text-[#658c79] transition-colors ml-6">
+                    Projets
+                </a>
+                <a href="#contacts" class="interactive text-2xl font-bold hover:text-[#658c79] transition-colors">
+                    Contacts
+                </a>
+            </div>
+            <div class="absolute top-10 right-[3vw] transform -translate-y-1/2 flex space-x-2">
+                <a href="#" class="interactive text-3xl" aria-label="Version française" lang="fr">🇫🇷</a>
+                <span class="text-2xl" aria-hidden="true">/</span>
+                <a href="#" class="interactive text-3xl opacity-50 hover:opacity-100 transition-opacity" lang="en">🇬🇧</a>
+            </div>
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2">
+                <img src="/img/AshaLogo.png" alt="Logo Asha" class="w-24 h-24">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Fixed Background Content -->
+    <div class="background-content">
+        <!-- Hero Section -->
+        <section class="w-full px-4" aria-label="Introduction">
+            <div class="container mx-auto pt-32 pb-16 flex flex-col items-center">
+                <h1 class="text-4xl md:text-6xl lg:text-8xl font-black text-center">
+                    Polette Nathan
+                </h1>
+                <p class="text-2xl md:text-3xl lg:text-5xl opacity-50 mt-6 text-center">
+                    Étudiant en ingénierie informatique
+                </p>
+                <button id="contact-button" class="interactive w-48 h-16 bg-[#658c79] mt-8 flex items-center justify-center hover:bg-[#597a6a] transition-colors">
+                    <span class="text-xl">Contactez moi !</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact-section" class="container mx-auto px-4 absolute bottom-0 left-0 right-0">
+            <div class="grid lg:grid-cols-2 gap-12 relative">
+                <!-- About Section -->
+                <div class="hidden lg:block">
+                    <h2 class="text-2xl md:text-3xl font-black mb-6 text-right">
+                        Un petit résumé rapide
+                    </h2>
+                    <p class="text-lg md:text-xl lg:text-2xl space-y-0 text-right">
+                        Salut, je suis Nathan Polette,<br>
+                        plus connu sous le pseudonyme Asha Geyon (Natpol50).<br>
+                        Cela fait maintenant presque 6 ans que je<br>
+                        développe et j'apprends dans l'optique de<br>
+                        devenir le plus polyvalent possible.<br>
+                        Un défi, une idée ? N'hésitez pas à me contacter !<br>
+                        (Au fait, je dessine aussi et fais du design de temps en temps)
+                    </p>
+                </div>
+
+                <!-- Vertical Separator -->
+                <div class="hidden lg:block absolute left-1/2 top-1/2 -translate-y-1/2 w-0.5 h-[110%] bg-[#f7f7f7]"></div>
+
+                <!-- Contact Links -->
+                <div id="contact-links" class="interactive">
+                    <h2 class="text-2xl md:text-3xl font-black mb-6">
+                        Contacts & comptes
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <a href="mailto:pro@example.com" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                            <img src="/img/mail.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
+                            <span class="text-lg font-semibold">Mail Pro</span>
+                        </a>
+                        <a href="mailto:school@example.com" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                            <img src="/img/mail.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
+                            <span class="text-lg font-semibold">Mail Scolaire</span>
+                        </a>
+                        <a href="https://github.com/Natpol50" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                            <img src="/img/github.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
+                            <span class="text-lg font-semibold">Github</span>
+                        </a>
+                        <a href="https://linkedin.com/in/nathan-polette" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                            <img src="/img/linkedin.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
+                            <span class="text-lg font-semibold">LinkedIn</span>
+                        </a>
+                        <a href="https://discord.gg/example" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                            <img src="/img/discord.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
+                            <span class="text-lg font-semibold">Discord</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <p class="text-xl md:text-2xl font-black">
+                    © 2024 Asha Geyon. Tous droits réservés.
+                </p>
+                <br/>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scrolling Content -->
+    <div class="relative">
+        <!-- Top spacer -->
+        <div class="spacer"></div>
+
+        <!-- Projects Section -->
+        <div id="projets" class="relative w-full overflow-hidden">
+            <!-- Top Triangle -->
+            <div class="triangle-section">
+                <svg class="absolute w-full h-full" preserveAspectRatio="none" viewBox="0 0 1920 120">
+                    <defs>
+                        <filter id="topShadow" x="0" y="0" width="100%" height="200%">
+                            <feDropShadow dx="0" dy="-4" stdDeviation="3" flood-opacity="0.3"/>
+                        </filter>
+                    </defs>
+                    <path d="M0 120 L1920 80 L1920 120 L0 120 Z" fill="#3E3E53"/>
+                    <path d="M0 120 L1920 40 L1920 80 L0 120 Z" fill="#D7D7D7"/>
+                    <path d="M0 120 L1920 0 L1920 40 L0 120 Z" fill="#658C79" filter="url(#topShadow)"/>
+                </svg>
+            </div>
+
+            <!-- Projects Content -->
+            <div class="bg-[#f5f5f5] py-12">
+                <div class="max-w-7xl mx-auto px-4">
+                    <h2 class="text-7xl font-black text-[#262732] mb-20">Mes Projets</h2>
+                    
+                    <!-- Projects Grid -->
+                    <div class="space-y-8">
+                        <!-- Current Projects -->
+                        <h3 class="text-4xl font-black text-[#262732] mb-8">Projets Actuels</h3>
+
+                        
+                        <!-- Aprosits project -->
+                        <article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                                <div class="md:col-span-1">
+                                    <h3 class="text-2xl font-black text-black mb-2">
+                                        PERSO - <span class="font-bold text-[#262732]">Web</span>
+                                    </h3>
+                                    <p class="text-lg italic text-black mb-4">Depuis Octobre 2024</p>
+                                    <div class="space-y-2">
+                                        <a href="https://github.com/Natpol50/AProsits" 
+                                        class="block text-sm italic text-[#0f0f0f] hover:underline">
+                                            github.com/Natpol50/AProsits
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-3">
+                                    <p class="text-lg mb-6 text-[#262732]">
+                                        [WIP] Création d'un site web léger et utile pour aider lors des kickoff projet au CESI. 
+                                    </p>
+                                    <p class="text-lg italic text-[#262732]">
+                                        Développement Web, Frontend, GitHub, Gestion de projet, UI/UX
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+
+
+                        <!-- Python Discord Bot Project -->
+                        <article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                                <div class="md:col-span-1">
+                                    <h3 class="text-2xl font-black text-black mb-2">
+                                        PERSO - <span class="font-bold text-[#262732]">ATbot</span>
+                                    </h3>
+                                    <p class="text-lg italic text-black mb-4">Depuis Juillet 2024</p>
+                                    <div class="space-y-2">
+                                        <a href="https://github.com/Natpol50/AT-bot" 
+                                        class="block text-sm italic text-[#0f0f0f] hover:underline">
+                                            github.com/Natpol50/AT-bot
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-3">
+                                    <p class="text-lg mb-6 text-[#262732]">
+                                        Création d'un bot discord de traduction automatisée.
+                                    </p>
+                                    <p class="text-lg italic text-[#262732]">
+                                        Gestion de logs, Test automatisé, config/profils, APIs, Open Source, MAJ, Git, Async/io
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <!-- Past Projects -->
+                        <h3 class="text-4xl font-black text-[#262732] mt-16 mb-8">Projets Passés</h3>
+
+                        
+                        <!-- Project Card -->
+                        <article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                                <div class="md:col-span-1">
+                                    <h3 class="text-2xl font-black text-black mb-2">
+                                        PERSO - <span class="font-bold text-[#262732]">Aportfolio</span>
+                                    </h3>
+                                    <p class="text-lg italic text-black mb-4">Novembre 2024</p>
+                                    <div class="space-y-2">
+                                        <a href="https://github.com/Natpol50/Portfolio-Asha_services" 
+                                           class="block text-sm italic text-[#0f0f0f] hover:underline">
+                                            github.com/Natpol50/Portfolio-Asha_services
+                                        </a>
+                                        <a href="https://port.asha-services.org" 
+                                           class="block text-sm italic text-[#0f0f0f] hover:underline">
+                                            port.asha-services.org
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="md:col-span-3">
+                                    <p class="text-lg mb-6 text-[#262732]">
+                                        Création d'un petit site web portfolio pour pouvoir présenter tous les projets 
+                                        que j'ai réalisés, qu'ils soient actuels, passés ou même annulés.
+                                    </p>
+                                    <p class="text-lg italic text-[#262732]">
+                                        HTML, CSS, REACT, JS, TAILWINDCSS, C++, RUST, KOTLIN, FORTRAN
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                                <div class="md:col-span-1">
+                                    <h3 class="text-2xl font-black text-black mb-2">
+                                        PERSO - <span class="font-bold text-[#262732]">Aportfolio</span>
+                                    </h3>
+                                    <p class="text-lg italic text-black mb-4">Novembre 2024</p>
+                                    <div class="space-y-2">
+                                        <a href="https://github.com/Natpol50/Portfolio-Asha_services" 
+                                           class="block text-sm italic text-[#0f0f0f] hover:underline">
+                                            github.com/Natpol50/Portfolio-Asha_services
+                                        </a>
+                                        <a href="https://port.asha-services.org" 
+                                           class="block text-sm italic text-[#0f0f0f] hover:underline">
+                                            port.asha-services.org
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="md:col-span-3">
+                                    <p class="text-lg mb-6 text-[#262732]">
+                                        Création d'un petit site web portfolio pour pouvoir présenter tous les projets 
+                                        que j'ai réalisés, qu'ils soient actuels, passés ou même annulés.
+                                    </p>
+                                    <p class="text-lg italic text-[#262732]">
+                                        HTML, CSS, REACT, JS, TAILWINDCSS, C++, RUST, KOTLIN, FORTRAN
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+<!-- C++ Arduino Project -->
+<article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="md:col-span-1">
+            <h3 class="text-2xl font-black text-black mb-2">
+                CESI - <span class="font-bold text-[#262732]">Arduino</span>
+            </h3>
+            <p class="text-lg italic text-black mb-4">Septembre 2024</p>
+        </div>
+        <div class="md:col-span-3">
+            <p class="text-lg mb-6 text-[#262732]">
+                Création d'une station météo embarquée & automatisation du téléversement.
+            </p>
+            <p class="text-lg italic text-[#262732]">
+                Arduino, C++, Automatisation, Embarqué, optimisation mémoire
+            </p>
+        </div>
+    </div>
+</article>
+
+
+<!-- Web MySQL Project -->
+<article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="md:col-span-1">
+            <h3 class="text-2xl font-black text-black mb-2">
+                CESI & PERSO - <span class="font-bold text-[#262732]">Web, MySQL</span>
+            </h3>
+            <p class="text-lg italic text-black mb-4">Mai 2024</p>
+            <div class="space-y-2">
+                <a href="https://There-is-no-link-right-now.so" 
+                   class="block text-sm italic text-[#0f0f0f] hover:underline">
+                    Projet Greenflag
+                </a>
+            </div>
+        </div>
+        <div class="md:col-span-3">
+            <p class="text-lg mb-6 text-[#262732]">
+                Création d'une base de données MYSQL et d'un site pour exploiter cette base.
+            </p>
+            <p class="text-lg italic text-[#262732]">
+                MySQL, Merise2, Frontend, Backend
+            </p>
+        </div>
+    </div>
+</article>
+
+<!-- Python Sound Communication Project -->
+<article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="md:col-span-1">
+            <h3 class="text-2xl font-black text-black mb-2">
+                CESI - <span class="font-bold text-[#262732]">Python</span>
+            </h3>
+            <p class="text-lg italic text-black mb-4">Novembre 2023</p>
+        </div>
+        <div class="md:col-span-3">
+            <p class="text-lg mb-6 text-[#262732]">
+                Création d'un protocole de communication basé sur des ondes sonores.
+            </p>
+            <p class="text-lg italic text-[#262732]">
+                Traitement du signal, Modulation numérique, Communication radio
+            </p>
+        </div>
+    </div>
+</article>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Triangle -->
+            <div class="triangle-section">
+                <svg class="absolute w-full h-full" preserveAspectRatio="none" viewBox="0 0 1920 120">
+                    <defs>
+                        <filter id="bottomShadow" x="0" y="-20%" width="100%" height="140%">
+                            <feDropShadow dx="0" dy="4" stdDeviation="3" flood-opacity="0.3"/>
+                        </filter>
+                    </defs>
+                    <path d="M0 0 L1920 100 L1920 0 L0 0 Z" fill="#658C79" filter="url(#bottomShadow)"/>
+                    <path d="M0 0 L1920 40 L1920 80 L0 0 Z" fill="#D7D7D7"/>
+                    <path d="M0 0 L1920 0 L1920 40 L0 0 Z" fill="#3E3E53"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Bottom spacer -->
+        <div class="spacer"></div>
+    </div>
+
+    <script>
+        function updateVisibility() {
+            const viewportHeight = window.innerHeight;
+            const scrollPosition = window.scrollY;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            // Get elements
+            const contactButton = document.getElementById('contact-button');
+            const contactLinks = document.getElementById('contact-links');
+            const contactElements = document.querySelectorAll('.contact-link');
+            
+            // Calculate visibility thresholds
+            const buttonThreshold = viewportHeight * 0.3;
+            const linksThreshold = documentHeight - viewportHeight * 1.3;
+            
+            // Calculate visibility states
+            const showButton = scrollPosition < buttonThreshold;
+            const showLinks = scrollPosition > linksThreshold;
+            
+            // Update visibilities with smooth transitions
+            function updateElement(element, show) {
+                if (!element) return;
+                
+                element.style.opacity = show ? '1' : '0';
+                element.style.pointerEvents = show ? 'auto' : 'none';
+            }
+            
+            // Update button
+            updateElement(contactButton, showButton);
+            
+            // Update contact links section
+            updateElement(contactLinks, showLinks);
+            
+            // Update individual contact links
+            contactElements.forEach(link => {
+                updateElement(link, showLinks);
+            });
+        }
+    
+        // Optimize scroll performance with requestAnimationFrame
+        let ticking = false;
+        
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateVisibility();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+    
+        // Event listeners
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        
+        // Initial call when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            requestAnimationFrame(updateVisibility);
+            
+            // Smooth scroll implementation for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+        </script>
+    </body>
+    </html>
