@@ -7,6 +7,12 @@
     <title>Polette Nathan - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Standard favicon -->
+    <link rel="icon" type="image/x-icon" href="/img/AshaLogo.ico">
+    <!-- PNG favicon -->
+    <link rel="icon" type="image/png" href="/img/AshaLogo.png">
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/img/AshaLogo.png">
     <style>
         :root {
             --color-primary: #658c79;
@@ -79,18 +85,20 @@
         }
     </style>
 </head>
-<body class="min-h-screen bg-[#262732] text-[#f7f7f7] font-aptos">
+<body class="min-h-screen bg-[var(--color-background)] text-[var(--color-text)] font-aptos">
     <!-- Navigation -->
     <nav class="nav-fixed">
         <div class="h-20 bg-[#3E3E53] shadow-2xl" aria-label="Navigation principale">
             <div class="container mx-auto h-full px-4 flex items-center justify-center space-x-40">
-                <a href="#projets" class="interactive text-2xl font-bold hover:text-[#658c79] transition-colors ml-6">
+                <a href="#" class="interactive text-2xl font-bold hover:text-[#658c79] transition-colors ml-6">
                     Projets
                 </a>
-                <a href="#contacts" class="interactive text-2xl font-bold hover:text-[#658c79] transition-colors">
+
+                <a href="/contact" class="interactive text-2xl font-bold hover:text-[#658c79] transition-colors">
                     Contacts
                 </a>
             </div>
+            <div class="absolute bottom-3 left-[calc(50%-12px-10rem)] w-[100px] h-1 bg-white"></div>
             <div class="absolute top-10 right-[3vw] transform -translate-y-1/2 flex space-x-2">
                 <a href="#" class="interactive text-3xl" aria-label="Version française" lang="fr">🇫🇷</a>
                 <span class="text-2xl" aria-hidden="true">/</span>
@@ -113,7 +121,7 @@
                 <p class="text-2xl md:text-3xl lg:text-5xl opacity-50 mt-6 text-center">
                     Étudiant en ingénierie informatique
                 </p>
-                <button id="contact-button" class="interactive w-48 h-16 bg-[#658c79] mt-8 flex items-center justify-center hover:bg-[#597a6a] transition-colors">
+                <button id="contact-button" class="interactive w-48 h-16 bg-[#658c79] mt-8 flex items-center justify-center hover:bg-[#597a6a] transition-colors" onclick="window.location.href='/contact'">
                     <span class="text-xl">Contactez moi !</span>
                 </button>
             </div>
@@ -147,23 +155,23 @@
                         Contacts & comptes
                     </h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        <a href="mailto:pro@example.com" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                        <a href="mailto:nathan.polette@gmail.com" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
                             <img src="/img/mail.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
                             <span class="text-lg font-semibold">Mail Pro</span>
                         </a>
-                        <a href="mailto:school@example.com" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                        <a href="mailto:nathan.polette@viacesi.fr" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
                             <img src="/img/mail.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
                             <span class="text-lg font-semibold">Mail Scolaire</span>
                         </a>
-                        <a href="https://github.com/Natpol50" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                        <a href="https://github.com/Natpol50" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
                             <img src="/img/github.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
                             <span class="text-lg font-semibold">Github</span>
                         </a>
-                        <a href="https://linkedin.com/in/nathan-polette" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                        <a href="https://fr.linkedin.com/in/polette-nathan" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
                             <img src="/img/linkedin.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
                             <span class="text-lg font-semibold">LinkedIn</span>
                         </a>
-                        <a href="https://discord.gg/example" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                        <a href="https://discordapp.com/users/1151796352548880406" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
                             <img src="/img/discord.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
                             <span class="text-lg font-semibold">Discord</span>
                         </a>
@@ -173,7 +181,7 @@
 
             <div class="text-center mt-8">
                 <p class="text-xl md:text-2xl font-black">
-                    © 2024 Asha Geyon. Tous droits réservés.
+                    © 2024 Asha Geyon. Tous droits réservés. (design & code par Asha Geyon)
                 </p>
                 <br/>
             </div>
@@ -217,11 +225,11 @@
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                                 <div class="md:col-span-1">
                                     <h3 class="text-2xl font-black text-black mb-2">
-                                        PERSO - <span class="font-bold text-[#262732]">Web</span>
+                                        PERSO - <span class="font-bold text-[#262732]">Aprosits</span>
                                     </h3>
                                     <p class="text-lg italic text-black mb-4">Depuis Octobre 2024</p>
                                     <div class="space-y-2">
-                                        <a href="https://github.com/Natpol50/AProsits" 
+                                        <a href="https://github.com/Natpol50/AProsits" target="_blank" 
                                         class="block text-sm italic text-[#0f0f0f] hover:underline">
                                             github.com/Natpol50/AProsits
                                         </a>
@@ -229,7 +237,10 @@
                                 </div>
                                 <div class="md:col-span-3">
                                     <p class="text-lg mb-6 text-[#262732]">
-                                        [WIP] Création d'un site web léger et utile pour aider lors des kickoff projet au CESI. 
+                                        [WIP, en pause] Création d'un site web léger et utile pour aider lors des kickoff projet au CESI. 
+                                        Pour le moment en état de pause, mais je compte bien le reprendre.
+                                        Très peu avancé pour le moment.
+                                        Le site n'est pour le moment hosté nul part malheureusement.
                                     </p>
                                     <p class="text-lg italic text-[#262732]">
                                         Développement Web, Frontend, GitHub, Gestion de projet, UI/UX
@@ -248,7 +259,7 @@
                                     </h3>
                                     <p class="text-lg italic text-black mb-4">Depuis Juillet 2024</p>
                                     <div class="space-y-2">
-                                        <a href="https://github.com/Natpol50/AT-bot" 
+                                        <a href="https://github.com/Natpol50/AT-bot" target="_blank" 
                                         class="block text-sm italic text-[#0f0f0f] hover:underline">
                                             github.com/Natpol50/AT-bot
                                         </a>
@@ -256,7 +267,7 @@
                                 </div>
                                 <div class="md:col-span-3">
                                     <p class="text-lg mb-6 text-[#262732]">
-                                        Création d'un bot discord de traduction automatisée.
+                                        Création d'un bot Discord permettant la traduction en temps réel des messages via les APIs DeepL et Google Translate, avec un système de commandes et de réactions par émojis drapeaux
                                     </p>
                                     <p class="text-lg italic text-[#262732]">
                                         Gestion de logs, Test automatisé, config/profils, APIs, Open Source, MAJ, Git, Async/io
@@ -268,7 +279,7 @@
                         <!-- Past Projects -->
                         <h3 class="text-4xl font-black text-[#262732] mt-16 mb-8">Projets Passés</h3>
 
-                        
+
                         <!-- Project Card -->
                         <article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -278,11 +289,11 @@
                                     </h3>
                                     <p class="text-lg italic text-black mb-4">Novembre 2024</p>
                                     <div class="space-y-2">
-                                        <a href="https://github.com/Natpol50/Portfolio-Asha_services" 
+                                        <a href="https://github.com/Natpol50/Portfolio-Asha_services" target="_blank"
                                            class="block text-sm italic text-[#0f0f0f] hover:underline">
                                             github.com/Natpol50/Portfolio-Asha_services
                                         </a>
-                                        <a href="https://port.asha-services.org" 
+                                        <a href="https://port.asha-services.org" target="_blank"
                                            class="block text-sm italic text-[#0f0f0f] hover:underline">
                                             port.asha-services.org
                                         </a>
@@ -295,7 +306,7 @@
                                         que j'ai réalisés, qu'ils soient actuels, passés ou même annulés.
                                     </p>
                                     <p class="text-lg italic text-[#262732]">
-                                        HTML, CSS, REACT, JS, TAILWINDCSS, C++, RUST, KOTLIN, FORTRAN
+                                        HTML, CSS, JS, TAILWINDCSS, UI/UX, Design, Frontend.
                                     </p>
                                 </div>
                             </div>
@@ -304,120 +315,139 @@
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                                 <div class="md:col-span-1">
                                     <h3 class="text-2xl font-black text-black mb-2">
-                                        PERSO - <span class="font-bold text-[#262732]">Aportfolio</span>
+                                        PERSO - <span class="font-bold text-[#262732]">BME280_Mini</span>
                                     </h3>
                                     <p class="text-lg italic text-black mb-4">Novembre 2024</p>
                                     <div class="space-y-2">
-                                        <a href="https://github.com/Natpol50/Portfolio-Asha_services" 
+                                        <a href="https://www.arduinolibraries.info/libraries/bme280_mini" target="_blank"
                                            class="block text-sm italic text-[#0f0f0f] hover:underline">
-                                            github.com/Natpol50/Portfolio-Asha_services
+                                           arduinolibraries.info/libraries/bme280_mini
                                         </a>
-                                        <a href="https://port.asha-services.org" 
+                                        <a href="https://github.com/Natpol50/BME280_mini" target="_blank"
                                            class="block text-sm italic text-[#0f0f0f] hover:underline">
-                                            port.asha-services.org
+                                           github.com/Natpol50/BME280_mini
                                         </a>
                                     </div>
                                 </div>
                                 
                                 <div class="md:col-span-3">
                                     <p class="text-lg mb-6 text-[#262732]">
-                                        Création d'un petit site web portfolio pour pouvoir présenter tous les projets 
-                                        que j'ai réalisés, qu'ils soient actuels, passés ou même annulés.
+                                        Création d'une librairie Arduino pour le capteur BME280.
+                                        Le but est de simplifier l'utilisation de ce capteur pour les débutants, tout en étant ultra-léger.
                                     </p>
                                     <p class="text-lg italic text-[#262732]">
-                                        HTML, CSS, REACT, JS, TAILWINDCSS, C++, RUST, KOTLIN, FORTRAN
+                                        Arduino, C++, Librairie, Capteur, BME280, Embarqué.
                                     </p>
                                 </div>
                             </div>
                         </article>
-<!-- C++ Arduino Project -->
-<article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="md:col-span-1">
-            <h3 class="text-2xl font-black text-black mb-2">
-                CESI - <span class="font-bold text-[#262732]">Arduino</span>
-            </h3>
-            <p class="text-lg italic text-black mb-4">Septembre 2024</p>
-        </div>
-        <div class="md:col-span-3">
-            <p class="text-lg mb-6 text-[#262732]">
-                Création d'une station météo embarquée & automatisation du téléversement.
-            </p>
-            <p class="text-lg italic text-[#262732]">
-                Arduino, C++, Automatisation, Embarqué, optimisation mémoire
-            </p>
-        </div>
-    </div>
-</article>
 
 
-<!-- Web MySQL Project -->
-<article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="md:col-span-1">
-            <h3 class="text-2xl font-black text-black mb-2">
-                CESI & PERSO - <span class="font-bold text-[#262732]">Web, MySQL</span>
-            </h3>
-            <p class="text-lg italic text-black mb-4">Mai 2024</p>
-            <div class="space-y-2">
-                <a href="https://There-is-no-link-right-now.so" 
-                   class="block text-sm italic text-[#0f0f0f] hover:underline">
-                    Projet Greenflag
-                </a>
-            </div>
-        </div>
-        <div class="md:col-span-3">
-            <p class="text-lg mb-6 text-[#262732]">
-                Création d'une base de données MYSQL et d'un site pour exploiter cette base.
-            </p>
-            <p class="text-lg italic text-[#262732]">
-                MySQL, Merise2, Frontend, Backend
-            </p>
-        </div>
-    </div>
-</article>
+                            <!-- C++ Arduino Project -->
+                            <article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+                                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                                    <div class="md:col-span-1">
+                                        <h3 class="text-2xl font-black text-black mb-2">
+                                            CESI - <span class="font-bold text-[#262732]">4W Project</span>
+                                        </h3>
+                                        <p class="text-lg italic text-black mb-4">Septembre 2024</p>
+                                        <div class="space-y-2">
+                                            <a href="https://github.com/Cesu-Prod/3WWatcher" target="_blank"
+                                               class="block text-sm italic text-[#0f0f0f] hover:underline">
+                                               github.com/Cesu-Prod/3WWatcher
+                                            </a>
+                                            <a href="https://github.com/Natpol50/Acompilator" target="_blank"
+                                               class="block text-sm italic text-[#0f0f0f] hover:underline">
+                                               (Script de compilation custom pour le projet) github.com/Natpol50/Acompilator
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="md:col-span-3">
+                                        <p class="text-lg mb-6 text-[#262732]">
+                                            Projet réalisé dans le cadre de ma formation au CESI,
+                                            il s'agit d'une station météo embarquée sur un Arduino Uno R3, embarquant un capteur BME280, un module GPS air530z un module RTC DS1307 un lighsensor LS06-S et un shield SD.
+                                        </p>
+                                        <p class="text-lg italic text-[#262732]">
+                                            Arduino, C++, Automatisation, Embarqué, optimisation mémoire, Bash, G++/GCC
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
 
-<!-- Python Sound Communication Project -->
-<article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="md:col-span-1">
-            <h3 class="text-2xl font-black text-black mb-2">
-                CESI - <span class="font-bold text-[#262732]">Python</span>
-            </h3>
-            <p class="text-lg italic text-black mb-4">Novembre 2023</p>
-        </div>
-        <div class="md:col-span-3">
-            <p class="text-lg mb-6 text-[#262732]">
-                Création d'un protocole de communication basé sur des ondes sonores.
-            </p>
-            <p class="text-lg italic text-[#262732]">
-                Traitement du signal, Modulation numérique, Communication radio
-            </p>
-        </div>
-    </div>
-</article>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Bottom Triangle -->
-            <div class="triangle-section">
-                <svg class="absolute w-full h-full" preserveAspectRatio="none" viewBox="0 0 1920 120">
-                    <defs>
-                        <filter id="bottomShadow" x="0" y="-20%" width="100%" height="140%">
-                            <feDropShadow dx="0" dy="4" stdDeviation="3" flood-opacity="0.3"/>
-                        </filter>
-                    </defs>
-                    <path d="M0 0 L1920 100 L1920 0 L0 0 Z" fill="#658C79" filter="url(#bottomShadow)"/>
-                    <path d="M0 0 L1920 40 L1920 80 L0 0 Z" fill="#D7D7D7"/>
-                    <path d="M0 0 L1920 0 L1920 40 L0 0 Z" fill="#3E3E53"/>
-                </svg>
-            </div>
-        </div>
+                            <!-- Web MySQL Project -->
+                            <article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+                                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                                    <div class="md:col-span-1">
+                                        <h3 class="text-2xl font-black text-black mb-2">
+                                            CESI & PERSO - <span class="font-bold text-[#262732]">Projet greenflag</span>
+                                        </h3>
+                                        <p class="text-lg italic text-black mb-4">Mai 2024</p>
+                                        <div class="space-y-2">
+                                            <a href="#" 
+                                            class="block text-sm italic text-[#0f0f0f] hover:underline">
+                                                Aucun lien pour le moment
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="md:col-span-3">
+                                        <p class="text-lg mb-6 text-[#262732]">
+                                            Création d'une base de données MYSQL et d'un site pour exploiter cette base.
+                                        </p>
+                                        <p class="text-lg italic text-[#262732]">
+                                            MySQL, Merise2, Frontend, Backend, HTML, CSS, JS, python, flask
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
 
-        <!-- Bottom spacer -->
-        <div class="spacer"></div>
-    </div>
+                            <!-- Python Sound Communication Project -->
+                            <article class="bg-[#f5f5f5] rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+                                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                                    <div class="md:col-span-1">
+                                        <h3 class="text-2xl font-black text-black mb-2">
+                                            CESI - <span class="font-bold text-[#262732]">Projet sans nom, PYTHON</span>
+                                        </h3>
+                                        <p class="text-lg italic text-black mb-4">Novembre 2023</p>
+                                        <div class="space-y-2">
+                                            <a href="#" 
+                                            class="block text-sm italic text-[#0f0f0f] hover:underline">
+                                                Aucun lien pour le moment
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="md:col-span-3">
+                                        <p class="text-lg mb-6 text-[#262732]">
+                                            Création d'un protocole de communication basé sur des ondes sonores.
+                                        </p>
+                                        <p class="text-lg italic text-[#262732]">
+                                            Traitement du signal, Modulation radio numérique, python
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Bottom Triangle -->
+                                        <div class="triangle-section">
+                                            <svg class="absolute w-full h-full" preserveAspectRatio="none" viewBox="0 0 1920 120">
+                                                <defs>
+                                                    <filter id="bottomShadow" x="0" y="-20%" width="100%" height="140%">
+                                                        <feDropShadow dx="0" dy="4" stdDeviation="3" flood-opacity="0.3"/>
+                                                    </filter>
+                                                </defs>
+                                                <path d="M0 0 L1920 100 L1920 0 L0 0 Z" fill="#658C79" filter="url(#bottomShadow)"/>
+                                                <path d="M0 0 L1920 40 L1920 80 L0 0 Z" fill="#D7D7D7"/>
+                                                <path d="M0 0 L1920 0 L1920 40 L0 0 Z" fill="#3E3E53"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- Bottom spacer -->
+                                    <div class="spacer"></div>
+                                </div>
 
     <script>
         function updateVisibility() {
