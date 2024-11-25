@@ -1,10 +1,13 @@
-Listen 8000
+ErrorDocument 404 /error/404.html
+ErrorDocument 500 /error/500.html
 
-<VirtualHost *:8000>
-    DocumentRoot "C:\Users\Asha\Desktop\test"
+Listen 3884
+
+<VirtualHost *:3884>
+    DocumentRoot "C:\Users\Asha Geyon\Desktop\server\cvaso"
     ServerName 192.168.1.14
     ServerAlias cv.asha-services.org
-    <Directory "C:\Users\Asha\Desktop\test">
+    <Directory "C:\Users\Asha Geyon\Desktop\server\cvaso">
         Require all granted
         AllowOverride All
     </Directory>
