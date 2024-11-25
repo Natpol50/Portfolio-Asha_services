@@ -86,43 +86,77 @@
     </style>
 </head>
 <body class="min-h-screen bg-[var(--color-background)] text-[var(--color-text)] font-aptos">
+    <div id="portraitWarning" class="fixed inset-0 bg-black/90 z-[2000] hidden portrait:flex flex-col items-center justify-center p-4">
+        <div class="bg-[var(--color-surface)] p-8 rounded-lg max-w-md w-full text-center">
+            <h2 class="text-2xl font-bold mb-4">⚠️ Attention</h2>
+            <p class="mb-6">Ce site n'est pas optimisé pour l'affichage en mode portrait, l'expérience en sera dégradée. Pour une meilleure expérience, veuillez utiliser un ordinateur</p>
+            <button 
+                id="closePortraitWarning"
+                class="bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] transition-colors px-8 py-3 rounded-md font-bold"
+            >
+                OK, j'ai compris
+            </button>
+        </div>
+    </div>
     <!-- Navigation -->
     <nav class="nav-fixed">
-        <div class="h-20 bg-[#3E3E53] shadow-2xl" aria-label="Navigation principale">
-            <div class="container mx-auto h-full px-4 flex items-center justify-center space-x-40">
-                <a href="#" class="interactive text-2xl font-bold hover:text-[#658c79] transition-colors ml-6">
+        <div class="h-20 bg-[#3E3E53] shadow-2xl " aria-label="Barre de navigation principale">
+            <div class="container mx-auto h-full px-0 flex items-center justify-center space-x-40 portrait:hidden">
+                <a href="#" class="interactive text-2xl font-bold hover:text-[#658c79] transition-colors">
                     Projets
                 </a>
-
-                <a href="/Contact.html" class="interactive text-2xl font-bold hover:text-[#658c79] transition-colors">
+                <a href="Contact.html" class="interactive text-2xl font-bold hover:text-[#658c79] transition-colors">
                     Contact
                 </a>
             </div>
-            <div class="absolute bottom-3 left-[calc(50%-12px-10rem)] w-[100px] h-1 bg-white"></div>
-            <div class="absolute top-10 right-[3vw] transform -translate-y-1/2 flex space-x-2">
-                <a href="#" class="interactive text-3xl" aria-label="Version française" lang="fr">🇫🇷</a>
-                <span class="text-2xl" aria-hidden="true">/</span>
-                <a href="/Endex.html" class="interactive text-3xl opacity-50 hover:opacity-100 transition-opacity" lang="en">🇬🇧</a>
+            <div class="container mx-auto h-full px-0 py-12 flex items-center justify-center space-x-10 landscape:hidden">
+                <a href="#" class="interactive text-2xl font-bold text-[#658c79]">
+                    Projets
+                </a>
+                <a href="#" class="interactive text-2xl font-bold opacity-0">
+                    ha
+                </a>
+                <a href="Contact.html" class="interactive text-2xl font-bold hover:text-[#658c79] transition-colors ">
+                    Contact
+                </a>
             </div>
-            <div class="absolute top-0 left-1/2 transform -translate-x-1/2">
-                <img src="/img/AshaLogo.png" alt="Logo Asha" class="w-24 h-24">
+
+            <div class="fixed top-[calc(60px)] left-[calc(50%-10px-10rem)] w-[90px] h-1 bg-white portrait:hidden"></div>
+            
+            <div class="fixed top-10 right-[3vw] transform -translate-y-1/2 flex space-x-2 hidden landscape:flex portrait:hidden">                
+                <a href="#" class="interactive text-3xl" aria-label="Version française" lang="fr">🇫🇷</a>                
+                <span class="text-2xl" aria-hidden="true">/</span>                
+                <a href="/Endex.html" class="interactive text-3xl opacity-50 hover:opacity-100 transition-opacity" lang="en">🇬🇧</a>            
+            </div>
+            
+            <div class="fixed bottom-2 right-[3vw] transform -translate-y-1/2 flex space-x-2 hidden portrait:flex landscape:hidden">                
+                <a href="#" class="interactive text-3xl" aria-label="Version française" lang="fr">🇫🇷</a>                
+                <span class="text-2xl" aria-hidden="true">/</span>                
+                <a href="/Endex.html" class="interactive text-3xl opacity-50 hover:opacity-100 transition-opacity" lang="en">🇬🇧</a>            
+            </div>  
+
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 portrait:hidden">
+                <img src="/img/AshaLogo.png" alt="Logo Asha" class="w-24 h-24 portrait:w-16 portrait:h-16">
+            </div>
+            <div class="absolute top-[calc(18px)] left-1/2 transform -translate-x-1/2 landscape:hidden">
+                <img src="/img/AshaLogo.png" alt="Logo Asha" class="w-24 h-24 portrait:w-20 portrait:h-20">
             </div>
         </div>
     </nav>
 
     <!-- Fixed Background Content -->
-    <div class="background-content">
+<div class="background-content">
         <!-- Hero Section -->
         <section class="w-full px-4" aria-label="Introduction">
             <div class="container mx-auto pt-32 pb-16 flex flex-col items-center">
-                <h1 class="text-4xl md:text-6xl lg:text-8xl font-black text-center">
+                <h1 class="text-4xl md:text-6xl lg:text-8xl portrait:text-5xl font-black text-center">
                     Polette Nathan
                 </h1>
-                <p class="text-2xl md:text-3xl lg:text-5xl opacity-50 mt-6 text-center">
+                <p class="text-2xl md:text-3xl lg:text-5xl portrait:text-xl opacity-50 mt-6 text-center">
                     Étudiant en ingénierie informatique
                 </p>
-                <button id="contact-button" class="interactive w-48 h-16 bg-[#658c79] mt-8 flex items-center justify-center hover:bg-[#597a6a] transition-colors" onclick="window.location.href='/Contact.html'">
-                    <span class="text-xl">Contactez moi !</span>
+                <button id="contact-button" class="interactive w-48 h-16 portrait:w-36 portrait:h-12 bg-[#658c79] mt-8 flex items-center justify-center hover:bg-[#597a6a] transition-colors" onclick="window.location.href='/Contact.html'">
+                    <span class="text-xl portrait:text-base">Contactez moi !</span>
                 </button>
             </div>
         </section>
@@ -130,12 +164,12 @@
         <!-- Footer -->
         <footer id="contact-section" class="container mx-auto px-4 absolute bottom-0 left-0 right-0">
             <div class="grid lg:grid-cols-2 gap-12 relative">
-                <!-- About Section -->
-                <div class="hidden lg:block">
-                    <h2 class="text-2xl md:text-3xl font-black mb-6 text-right">
+                <!-- About Section - Now hides when height >= 3/4 width -->
+                <div class="hidden [min-aspect-ratio:4/3]:hidden lg:block">
+                    <h2 class="text-2xl md:text-3xl font-black mb-6 text-right whitespace-nowrap text-[clamp(1rem,2vw,1.875rem)]">
                         Un petit résumé rapide
                     </h2>
-                    <p class="text-lg md:text-xl lg:text-2xl space-y-0 text-right">
+                    <p class="text-right whitespace-nowrap text-[clamp(0.75rem,1.5vw,1.5rem)]">
                         Salut, je suis Nathan Polette,<br>
                         plus connu sous le pseudonyme Asha Geyon (Natpol50).<br>
                         Cela fait maintenant presque 6 ans que je<br>
@@ -146,41 +180,42 @@
                     </p>
                 </div>
 
+
                 <!-- Vertical Separator -->
-                <div class="hidden lg:block absolute left-1/2 top-1/2 -translate-y-1/2 w-0.5 h-[110%] bg-[#f7f7f7]"></div>
+                <div class="hidden [min-aspect-ratio:4/3]:hidden lg:block absolute left-1/2 top-1/2 -translate-y-1/2 w-0.5 h-[110%] bg-[#f7f7f7]"></div>
 
                 <!-- Contact Links -->
                 <div id="contact-links" class="interactive">
-                    <h2 class="text-2xl md:text-3xl font-black mb-6">
+                    <h2 class="text-2xl md:text-3xl portrait:text-lg font-black mb-6">
                         Contacts & comptes
                     </h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        <a href="mailto:nathan.polette@gmail.com" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
-                            <img src="/img/mail.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
-                            <span class="text-lg font-semibold">Mail Pro</span>
+                        <a href="mailto:nathan.polette@gmail.com" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 portrait:h-10 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                            <img src="/img/mail.png" alt="" class="w-8 h-8 portrait:w-6 portrait:h-6 mr-4" aria-hidden="true">
+                            <span class="text-lg portrait:text-sm font-semibold">Mail Pro</span>
                         </a>
-                        <a href="mailto:nathan.polette@viacesi.fr" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
-                            <img src="/img/mail.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
-                            <span class="text-lg font-semibold">Mail Scolaire</span>
+                        <a href="mailto:nathan.polette@viacesi.fr" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 portrait:h-10 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                            <img src="/img/mail.png" alt="" class="w-8 h-8 portrait:w-6 portrait:h-6 mr-4" aria-hidden="true">
+                            <span class="text-lg portrait:text-sm font-semibold">Mail Scolaire</span>
                         </a>
-                        <a href="https://github.com/Natpol50" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
-                            <img src="/img/github.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
-                            <span class="text-lg font-semibold">Github</span>
+                        <a href="https://github.com/Natpol50" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 portrait:h-10 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                            <img src="/img/github.png" alt="" class="w-8 h-8 portrait:w-6 portrait:h-6 mr-4" aria-hidden="true">
+                            <span class="text-lg portrait:text-sm font-semibold">Github</span>
                         </a>
-                        <a href="https://fr.linkedin.com/in/polette-nathan" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
-                            <img src="/img/linkedin.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
-                            <span class="text-lg font-semibold">LinkedIn</span>
+                        <a href="https://fr.linkedin.com/in/polette-nathan" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 portrait:h-10 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                            <img src="/img/linkedin.png" alt="" class="w-8 h-8 portrait:w-6 portrait:h-6 mr-4" aria-hidden="true">
+                            <span class="text-lg portrait:text-sm font-semibold">LinkedIn</span>
                         </a>
-                        <a href="https://discordapp.com/users/1151796352548880406" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
-                            <img src="/img/discord.png" alt="" class="w-8 h-8 mr-4" aria-hidden="true">
-                            <span class="text-lg font-semibold">Discord</span>
+                        <a href="https://discordapp.com/users/1151796352548880406" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 portrait:h-10 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                            <img src="/img/discord.png" alt="" class="w-8 h-8 portrait:w-6 portrait:h-6 mr-4" aria-hidden="true">
+                            <span class="text-lg portrait:text-sm font-semibold">Discord</span>
                         </a>
                     </div>
                 </div>
             </div>
 
             <div class="text-center mt-8">
-                <p class="text-xl md:text-2xl font-black">
+                <p class="text-xl md:text-2xl portrait:text-base font-black">
                     © 2024 Asha Geyon. Tous droits réservés. (design & code par Asha Geyon)
                 </p>
                 <br/>
@@ -452,6 +487,31 @@
                                 </div>
 
     <script>
+        const hasSeenWarning = localStorage.getItem('hasSeenPortraitWarning');
+        const warningModal = document.getElementById('portraitWarning');
+        
+        if (!hasSeenWarning) {
+            // Si c'est la première fois, on affiche le modal avec une petite animation
+            warningModal.style.opacity = '0';
+            warningModal.style.transition = 'opacity 0.3s ease-in-out';
+            warningModal.style.display = 'flex';
+            setTimeout(() => {
+                warningModal.style.opacity = '1';
+            }, 100);
+        }
+
+        document.getElementById('closePortraitWarning').addEventListener('click', () => {
+            // Animer la fermeture
+            warningModal.style.opacity = '0';
+            setTimeout(() => {
+                warningModal.style.display = 'none';
+            }, 300);
+            
+            // Enregistrer que l'utilisateur a vu l'avertissement
+            localStorage.setItem('hasSeenPortraitWarning', 'true');
+        });
+
+
         function updateVisibility() {
             const viewportHeight = window.innerHeight;
             const scrollPosition = window.scrollY;
