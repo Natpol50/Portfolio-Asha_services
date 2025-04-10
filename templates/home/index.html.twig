@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ translations.translate('site.title') }}{% endblock %}
+
+{% block content %}
+    {# Set the home page flag for footer #}
+    {% set is_home_page = true %}
+
+    {# Fixed Background Content #}
+    <div class="background-content">
+        <!-- Hero Section -->
+        <section class="w-full px-4" aria-label="{{ translations.translate('home.intro_label') }}">
+            <div class="container mx-auto pt-32 pb-16 flex flex-col items-center">
+                <h1 class="text-4xl md:text-6xl lg:text-8xl portrait:text-5xl font-black text-center">
+                    Polette Nathan
+                </h1>
+                <p class="text-2xl md:text-3xl lg:text-5xl portrait:text-xl opacity-50 mt-6 text-center">
+                    {{ translations.translate('home.subtitle') }}
+                </p>
+                <button id="contact-button" class="interactive w-48 h-16 portrait:w-36 portrait:h-12 bg-[#658c79] mt-8 flex items-center justify-center hover:bg-[#597a6a] transition-colors" onclick="window.location.href='{{ language == 'fr' ? '/contact' : '/contact-en' }}'">
+                    <span class="text-xl portrait:text-base">{{ translations.translate('home.contact_button') }}</span>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scrolling Content -->
+    <div class="relative">
+        <!-- Top spacer -->
+        <div class="spacer"></div>
+
+        <!-- Projects Section -->
+        <div id="projets" class="relative w-full overflow-hidden">
+            <!-- Top Triangle -->
+            <div class="triangle-section">
+                <svg class="absolute w-full h-full" preserveAspectRatio="none" viewBox="0 0 1920 120">
+                    <defs>
+                        <filter id="topShadow" x="0" y="0" width="100%" height="200%">
+                            <feDropShadow dx="0" dy="-4" stdDeviation="3" flood-opacity="0.3"/>
+                        </filter>
+                    </defs>
+                    <path d="M0 120 L1920 80 L1920 120 L0 120 Z" fill="#3E3E53"/>
+                    <path d="M0 120 L1920 40 L1920 80 L0 120 Z" fill="#D7D7D7"/>
+                    <path d="M0 120 L1920 0 L1920 40 L0 120 Z" fill="#658C79" filter="url(#topShadow)"/>
+                </svg>
+            </div>
+
+            <!-- Projects Content -->
+            <div class="bg-[#f5f5f5] py-12">
+                <div class="max-w-7xl mx-auto px-4">
+                    <h2 class="text-7xl font-black text-[#262732] mb-20">{{ translations.translate('home.projects_title') }}</h2>
+                    
+                    <!-- Projects Grid -->
+                    <div class="space-y-8">
+                        <!-- Current Projects -->
+                        <h3 class="text-4xl font-black text-[#262732] mb-8">{{ translations.translate('home.current_projects') }}</h3>
+
+                        {% if currentProjects|length > 0 %}
+                            {% for project in currentProjects %}
+                                {% include 'components/project-card.html.twig' with {
+                                    'project': project,
+                                    'language': language,
+                                    'translations': translations
+                                } %}
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-[#262732] text-xl italic">{{ translations.translate('home.no_current_projects') }}</p>
+                        {% endif %}
+                        
+                        <!-- Past Projects -->
+                        <h3 class="text-4xl font-black text-[#262732] mt-16 mb-8">{{ translations.translate('home.past_projects') }}</h3>
+
+                        {% if pastProjects|length > 0 %}
+                            {% for project in pastProjects %}
+                                {% include 'components/project-card.html.twig' with {
+                                    'project': project,
+                                    'language': language,
+                                    'translations': translations
+                                } %}
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-[#262732] text-xl italic">{{ translations.translate('home.no_past_projects') }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Triangle -->
+            <div class="triangle-section">
+                <svg class="absolute w-full h-full" preserveAspectRatio="none" viewBox="0 0 1920 120">
+                    <defs>
+                        <filter id="bottomShadow" x="0" y="-20%" width="100%" height="140%">
+                            <feDropShadow dx="0" dy="4" stdDeviation="3" flood-opacity="0.3"/>
+                        </filter>
+                    </defs>
+                    <path d="M0 0 L1920 100 L1920 0 L0 0 Z" fill="#658C79" filter="url(#bottomShadow)"/>
+                    <path d="M0 0 L1920 40 L1920 80 L0 0 Z" fill="#D7D7D7"/>
+                    <path d="M0 0 L1920 0 L1920 40 L0 0 Z" fill="#3E3E53"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Bottom spacer -->
+        <div class="spacer"></div>
+    </div>
+{% endblock %}

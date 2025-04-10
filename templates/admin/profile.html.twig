@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ translations.translate('admin.profile') }} - {{ translations.translate('site.title') }}{% endblock %}
+
+{% block content %}
+<div class="admin-content container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold">{{ translations.translate('admin.profile') }}</h1>
+        
+        <div>
+            <a href="/admin" class="bg-[var(--color-surface)] hover:bg-[var(--color-surface-hover)] transition-colors px-4 py-2 rounded text-white font-medium">
+                {{ translations.translate('admin.back_to_dashboard') }}
+            </a>
+        </div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Profile Info Card -->
+        <div class="bg-[var(--color-surface)] p-6 rounded-lg shadow-md">
+            <div class="flex flex-col items-center">
+                <div class="w-32 h-32 rounded-full bg-[var(--color-primary)] flex items-center justify-center mb-4">
+                    <span class="text-5xl font-bold">{{ request.getUserFullName()|slice(0, 1) }}</span>
+                </div>
+                
+                <h2 class="text-2xl font-bold mb-1">{{ request.getUserFullName() }}</h2>
+                <p class="text-gray-400 mb-4">{{ request.getUserInfo().userEmail }}</p>
+                
+                <div class="w-full mt-4 space-y-2">
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">{{ translations.translate('admin.user_id') }}:</span>
+                        <span>{{ request.getUserId() }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">{{ translations.translate('admin.user_role') }}:</span>
+                        <span>{{ translations.translate('admin.role_admin') }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">{{ translations.translate('admin.last_login') }}:</span>
+                        <span>{{ "now"|date("d M Y, H:i") }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Edit Profile Form -->
+        <div class="md:col-span-2">
+            <div class="bg-[var(--color-surface)] p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-bold mb-6">{{ translations.translate('admin.edit_personal_details') }}</h2>
+                
+                <form action="/admin/profile/update" method="post" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="first_name" class="block text-sm font-medium mb-2">{{ translations.translate('admin.first_name') }}</label>
+                            <input 
+                                type="text" 
+                                id="first_name" 
+                                name="first_name"
+                                value="{{ request.getUserInfo().userFirstName }}"
+                                class="w-full p-3 bg-[var(--color-background)] border border-[var(--color-primary)] rounded-md text-[var(--color-text)]"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="last_name" class="block text-sm font-medium mb-2">{{ translations.translate('admin.last_name') }}</label>
+                            <input 
+                                type="text" 
+                                id="last_name" 
+                                name="last_name"
+                                value="{{ request.getUserInfo().userName }}"
+                                class="w-full p-3 bg-[var(--color-background)] border border-[var(--color-primary)] rounded-md text-[var(--color-text)]"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-2">{{ translations.translate('admin.email') }}</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email"
+                                value="{{ request.getUserInfo().userEmail }}"
+                                class="w-full p-3 bg-[var(--color-background)] border border-[var(--color-primary)] rounded-md text-[var(--color-text)]"
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4 border-t border-gray-700">
+                        <h3 class="text-lg font-bold mb-4">{{ translations.translate('admin.change_password') }}</h3>
+                        <p class="text-sm text-gray-400 mb-4">{{ translations.translate('admin.change_password_info') }}</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="current_password" class="block text-sm font-medium mb-2">{{ translations.translate('admin.current_password') }}</label>
+                                <input 
+                                    type="password" 
+                                    id="current_password" 
+                                    name="current_password"
+                                    class="w-full p-3 bg-[var(--color-background)] border border-[var(--color-primary)] rounded-md text-[var(--color-text)]"
+                                >
+                            </div>
+                            
+                            <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="new_password" class="block text-sm font-medium mb-2">{{ translations.translate('admin.new_password') }}</label>
+                                    <input 
+                                        type="password" 
+                                        id="new_password" 
+                                        name="new_password"
+                                        class="w-full p-3 bg-[var(--color-background)] border border-[var(--color-primary)] rounded-md text-[var(--color-text)]"
+                                    >
+                                </div>
+                                
+                                <div>
+                                    <label for="confirm_password" class="block text-sm font-medium mb-2">{{ translations.translate('admin.confirm_password') }}</label>
+                                    <input 
+                                        type="password" 
+                                        id="confirm_password" 
+                                        name="confirm_password"
+                                        class="w-full p-3 bg-[var(--color-background)] border border-[var(--color-primary)] rounded-md text-[var(--color-text)]"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-4">
+                        <button type="reset" class="px-6 py-3 bg-gray-600 hover:bg-gray-700 transition-colors rounded text-white font-medium">
+                            {{ translations.translate('admin.reset') }}
+                        </button>
+                        <button type="submit" class="px-6 py-3 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] transition-colors rounded text-white font-medium">
+                            {{ translations.translate('admin.save_changes') }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Danger Zone -->
+    <div class="mt-8 bg-red-900/20 border border-red-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-red-400">{{ translations.translate('admin.danger_zone') }}</h2>
+        <p class="mb-6 text-gray-400">{{ translations.translate('admin.danger_zone_warning') }}</p>
+        
+        <div class="flex">
+            <a href="/logout" class="px-6 py-3 bg-red-700 hover:bg-red-800 transition-colors rounded text-white font-medium">
+                {{ translations.translate('admin.logout') }}
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

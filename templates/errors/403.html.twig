@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}403 - {{ translations.translate('error.forbidden') }} - {{ translations.translate('site.title') }}{% endblock %}
+
+{% block meta_description %}{{ translations.translate('error.403_description') }}{% endblock %}
+
+{% block content %}
+<main class="flex flex-col items-center justify-center min-h-screen px-4 text-center">
+    <div class="content-wrapper max-w-2xl">
+        <h1 class="text-8xl font-black mb-4 animate-pulse">403</h1>
+        <h2 class="text-4xl font-bold mb-8">{{ translations.translate('error.forbidden') }}</h2>
+        <p class="text-xl mb-12 opacity-80">
+            {{ translations.translate('error.403_message') }}
+        </p>
+        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center">
+            <button onclick="window.history.back()" class="px-8 py-3 bg-[var(--color-surface)] hover:bg-[var(--color-surface-hover)] transition-colors rounded-md font-bold text-lg">
+                {{ translations.translate('error.go_back') }}
+            </button>
+            <a href="/login" class="px-8 py-3 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] transition-colors rounded-md font-bold text-lg">
+                {{ translations.translate('error.login') }}
+            </a>
+            <a href="/" class="px-8 py-3 bg-[var(--color-surface)] hover:bg-[var(--color-surface-hover)] transition-colors rounded-md font-bold text-lg">
+                {{ translations.translate('error.back_to_home') }}
+            </a>
+        </div>
+    </div>
+</main>
+{% endblock %}

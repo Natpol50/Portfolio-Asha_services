@@ -1,0 +1,56 @@
+<footer id="contact-section" class="container mx-auto px-4 {% if not is_home_page is defined or not is_home_page %}py-8 mt-32{% else %}absolute bottom-0 left-0 right-0{% endif %}">
+    {% if is_home_page is defined and is_home_page %}
+        <div class="grid lg:grid-cols-2 gap-12 relative">
+            {# About Section - Hides when height >= 3/4 width #}
+            <div class="hidden [min-aspect-ratio:4/3]:hidden lg:block">
+                <h2 class="text-2xl md:text-3xl font-black mb-6 text-right whitespace-nowrap text-[clamp(1rem,2vw,1.875rem)]">
+                    {{ translations.translate('footer.about_title') }}
+                </h2>
+                <p class="text-right whitespace-nowrap text-[clamp(0.75rem,1.5vw,1.5rem)]">
+                    {{ personalInfo.about_text|raw }}
+                </p>
+            </div>
+
+            {# Vertical Separator #}
+            <div class="hidden [min-aspect-ratio:4/3]:hidden lg:block absolute left-1/2 top-1/2 -translate-y-1/2 w-0.5 h-[110%] bg-[#f7f7f7]"></div>
+
+            {# Contact Links #}
+            <div id="contact-links" class="interactive">
+                <h2 class="text-2xl md:text-3xl portrait:text-lg font-black mb-6">
+                    {{ translations.translate('footer.contact_title') }}
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <a href="mailto:{{ personalInfo.email }}" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 portrait:h-10 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                        <img src="/assets/img/mail.png" alt="" class="w-8 h-8 portrait:w-6 portrait:h-6 mr-4" aria-hidden="true">
+                        <span class="text-lg portrait:text-sm font-semibold">Mail Pro</span>
+                    </a>
+                    <a href="mailto:nathan.polette@viacesi.fr" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 portrait:h-10 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                        <img src="/assets/img/mail.png" alt="" class="w-8 h-8 portrait:w-6 portrait:h-6 mr-4" aria-hidden="true">
+                        <span class="text-lg portrait:text-sm font-semibold">Mail Scolaire</span>
+                    </a>
+                    <a href="{{ personalInfo.github_url }}" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 portrait:h-10 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                        <img src="/assets/img/github.png" alt="" class="w-8 h-8 portrait:w-6 portrait:h-6 mr-4" aria-hidden="true">
+                        <span class="text-lg portrait:text-sm font-semibold">Github</span>
+                    </a>
+                    <a href="{{ personalInfo.linkedin_url }}" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 portrait:h-10 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                        <img src="/assets/img/linkedin.png" alt="" class="w-8 h-8 portrait:w-6 portrait:h-6 mr-4" aria-hidden="true">
+                        <span class="text-lg portrait:text-sm font-semibold">LinkedIn</span>
+                    </a>
+                    {% if personalInfo.discord_url %}
+                        <a href="{{ personalInfo.discord_url }}" target="_blank" class="interactive contact-link flex items-center bg-[#3e3e53] h-16 portrait:h-10 md:h-[69px] px-6 hover:bg-[#4a4a63] transition-colors">
+                            <img src="/assets/img/discord.png" alt="" class="w-8 h-8 portrait:w-6 portrait:h-6 mr-4" aria-hidden="true">
+                            <span class="text-lg portrait:text-sm font-semibold">Discord</span>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="text-center {% if is_home_page is defined and is_home_page %}mt-8{% endif %}">
+        <p class="text-xl md:text-2xl font-black portrait:text-base">
+            © {{ current_year }} Asha Geyon. {{ translations.translate('footer.rights_reserved') }}
+        </p>
+        <br/>
+    </div>
+</footer>

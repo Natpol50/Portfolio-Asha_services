@@ -1,0 +1,28 @@
+{
+    "name": "natpol50/portfolio-site",
+    "description": "Multilingual Portfolio Website with MVC Architecture",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nathan Polette",
+            "email": "nathan.polette@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "twig/twig": "^3.0",
+        "vlucas/phpdotenv": "^5.3",
+        "firebase/php-jwt": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php scripts/install.php"
+        ]
+    }
+}

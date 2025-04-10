@@ -1,0 +1,2 @@
+127.0.0.1 - - [10/Apr/2025:19:11:35 +0200] "GET / HTTP/1.1" 200 445 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0"
+127.0.0.1 - - [10/Apr/2025:19:14:21 +0200] "GET / HTTP/1.1" 200 748 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0"

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="{{ language|default('fr') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}{{ translations.translate('meta.description') }}{% endblock %}">
+    <title>{% block title %}{{ translations.translate('site.title') }}{% endblock %}</title>
+    
+    {# TailwindCSS #}
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    {# Fonts #}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    {# Favicons #}
+    <link rel="icon" type="image/x-icon" href="/assets/img/AshaLogo.ico">
+    <link rel="icon" type="image/png" href="/assets/img/AshaLogo.png">
+    <link rel="apple-touch-icon" href="/assets/img/AshaLogo.png">
+    
+    <style>
+        :root {
+            --color-primary: #658c79;
+            --color-primary-dark: #597a6a;
+            --color-background: #262732;
+            --color-surface: #3e3e53;
+            --color-surface-hover: #4a4a63;
+            --color-text: #f7f7f7;
+        }
+
+        .font-aptos {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Fixed background content */
+        .background-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* Interactive elements */
+        .interactive {
+            pointer-events: auto;
+            position: relative;
+            z-index: 20;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Projects section */
+        #projets {
+            position: relative;
+            z-index: 30;
+        }
+
+        /* Navigation */
+        .nav-fixed {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+        }
+
+        /* Spacers for parallax */
+        .spacer {
+            height: 42vh;
+            pointer-events: none;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus styles */
+        a:focus, button:focus {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        /* Triangle sections */
+        .triangle-section {
+            position: relative;
+            height: 120px;
+            width: 100%;
+        }
+        
+        /* Admin styles */
+        .admin-content {
+            padding-top: 6rem;
+        }
+        
+        /* Flash messages */
+        .flash-message {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem;
+        }
+        
+        .flash-success {
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+        
+        .flash-error {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #ef4444;
+        }
+    </style>
+    
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body class="min-h-screen bg-[var(--color-background)] text-[var(--color-text)] font-aptos">
+    {# Portrait mode warning #}
+    <div id="portraitWarning" class="fixed inset-0 bg-black/90 z-[2000] hidden portrait:flex flex-col items-center justify-center p-4">
+        <div class="bg-[var(--color-surface)] p-8 rounded-lg max-w-md w-full text-center">
+            <h2 class="text-2xl font-bold mb-4">⚠️ {{ translations.translate('warning.title') }}</h2>
+            <p class="mb-6">{{ translations.translate('warning.portrait_mode') }}</p>
+            <button 
+                id="closePortraitWarning"
+                class="bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] transition-colors px-8 py-3 rounded-md font-bold"
+            >
+                {{ translations.translate('warning.got_it') }}
+            </button>
+        </div>
+    </div>
+
+    {# Navigation #}
+    {% include 'components/navigation.html.twig' %}
+
+    {# Flash messages #}
+    {% if error is defined and error is not empty %}
+        <div class="container mx-auto mt-24 px-4 z-50 relative">
+            {% for message in error %}
+                <div class="flash-message flash-error">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if request.getFlashMessages('error') is not empty %}
+        <div class="container mx-auto mt-24 px-4 z-50 relative">
+            {% for message in request.getFlashMessages('error') %}
+                <div class="flash-message flash-error">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if success is defined and success is not empty %}
+        <div class="container mx-auto mt-24 px-4 z-50 relative">
+            {% for message in success %}
+                <div class="flash-message flash-success">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if request.getFlashMessages('success') is not empty %}
+        <div class="container mx-auto mt-24 px-4 z-50 relative">
+            {% for message in request.getFlashMessages('success') %}
+                <div class="flash-message flash-success">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {# Main content #}
+    {% block content %}{% endblock %}
+
+    {# Footer #}
+    {% include 'components/footer.html.twig' %}
+
+    {# Scripts #}
+    <script>
+        // Portrait warning
+        const hasSeenWarning = localStorage.getItem('hasSeenPortraitWarning');
+        const warningModal = document.getElementById('portraitWarning');
+        
+        if (!hasSeenWarning) {
+            // If first time, show the modal with animation
+            warningModal.style.opacity = '0';
+            warningModal.style.transition = 'opacity 0.3s ease-in-out';
+            warningModal.style.display = 'flex';
+            setTimeout(() => {
+                warningModal.style.opacity = '1';
+            }, 100);
+        }
+
+        document.getElementById('closePortraitWarning')?.addEventListener('click', () => {
+            // Animate closing
+            warningModal.style.opacity = '0';
+            setTimeout(() => {
+                warningModal.style.display = 'none';
+            }, 300);
+            
+            // Record that user has seen the warning
+            localStorage.setItem('hasSeenPortraitWarning', 'true');
+        });
+
+        // Visibility handling for parallax effects
+        function updateVisibility() {
+            const viewportHeight = window.innerHeight;
+            const scrollPosition = window.scrollY;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            // Get elements
+            const contactButton = document.getElementById('contact-button');
+            const contactLinks = document.getElementById('contact-links');
+            const contactElements = document.querySelectorAll('.contact-link');
+            
+            // Calculate visibility thresholds
+            const buttonThreshold = viewportHeight * 0.3;
+            const linksThreshold = documentHeight - viewportHeight * 1.3;
+            
+            // Calculate visibility states
+            const showButton = scrollPosition < buttonThreshold;
+            const showLinks = scrollPosition > linksThreshold;
+            
+            // Update visibilities with smooth transitions
+            function updateElement(element, show) {
+                if (!element) return;
+                
+                element.style.opacity = show ? '1' : '0';
+                element.style.pointerEvents = show ? 'auto' : 'none';
+            }
+            
+            // Update button
+            updateElement(contactButton, showButton);
+            
+            // Update contact links section
+            updateElement(contactLinks, showLinks);
+            
+            // Update individual contact links
+            contactElements.forEach(link => {
+                updateElement(link, showLinks);
+            });
+        }
+    
+        // Optimize scroll performance with requestAnimationFrame
+        let ticking = false;
+        
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateVisibility();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+    
+        // Event listeners
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        
+        // Initial call when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize visibility
+            requestAnimationFrame(updateVisibility);
+            
+            // Smooth scroll implementation for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    
+    {% block javascripts %}{% endblock %}
+</body>
+</html>

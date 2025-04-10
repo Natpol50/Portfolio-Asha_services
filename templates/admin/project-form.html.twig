@@ -1,0 +1,192 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ translations.translate('admin.projects') }} - {{ translations.translate('site.title') }}{% endblock %}
+
+{% block content %}
+<div class="admin-content container mx-auto px-4 py-8">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <h1 class="text-3xl md:text-4xl font-bold">{{ translations.translate('admin.projects') }}</h1>
+        
+        <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/admin" class="bg-[var(--color-surface)] hover:bg-[var(--color-surface-hover)] transition-colors px-4 py-2 rounded text-white font-medium text-center">
+                {{ translations.translate('admin.back_to_dashboard') }}
+            </a>
+            <a href="/admin/project/new" class="bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] transition-colors px-4 py-2 rounded text-white font-medium text-center">
+                <span class="mr-2">+</span> {{ translations.translate('admin.add_project') }}
+            </a>
+        </div>
+    </div>
+    
+    <!-- Filters -->
+    <div class="bg-[var(--color-surface)] p-4 rounded-lg shadow-md mb-8">
+        <form action="/admin/projects" method="get" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+                <label for="status" class="block text-sm font-medium mb-2">{{ translations.translate('admin.filter_by_status') }}</label>
+                <select 
+                    id="status" 
+                    name="status"
+                    class="w-full p-2 bg-[var(--color-background)] border border-[var(--color-primary)] rounded-md text-[var(--color-text)]"
+                    onchange="this.form.submit()"
+                >
+                    <option value="">{{ translations.translate('admin.all_statuses') }}</option>
+                    <option value="current" {% if request.getQuery('status') == 'current' %}selected{% endif %}>
+                        {{ translations.translate('admin.status_current') }}
+                    </option>
+                    <option value="past" {% if request.getQuery('status') == 'past' %}selected{% endif %}>
+                        {{ translations.translate('admin.status_past') }}
+                    </option>
+                    <option value="canceled" {% if request.getQuery('status') == 'canceled' %}selected{% endif %}>
+                        {{ translations.translate('admin.status_canceled') }}
+                    </option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="type" class="block text-sm font-medium mb-2">{{ translations.translate('admin.filter_by_type') }}</label>
+                <select 
+                    id="type" 
+                    name="type"
+                    class="w-full p-2 bg-[var(--color-background)] border border-[var(--color-primary)] rounded-md text-[var(--color-text)]"
+                    onchange="this.form.submit()"
+                >
+                    <option value="">{{ translations.translate('admin.all_types') }}</option>
+                    {% for projectType in projectTypes|default([]) %}
+                        <option value="{{ projectType }}" {% if request.getQuery('type') == projectType %}selected{% endif %}>
+                            {{ projectType|upper }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div>
+                <label for="search" class="block text-sm font-medium mb-2">{{ translations.translate('admin.search') }}</label>
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        id="search" 
+                        name="search"
+                        value="{{ request.getQuery('search') }}"
+                        class="w-full p-2 bg-[var(--color-background)] border border-[var(--color-primary)] rounded-md text-[var(--color-text)] pr-10"
+                        placeholder="{{ translations.translate('admin.search_placeholder') }}"
+                    >
+                    <button type="submit" class="absolute right-2 top-1/2 transform -translate-y-1/2">
+                        🔍
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Projects List -->
+    <div class="bg-[var(--color-surface)] p-6 rounded-lg shadow-md">
+        {% if projects|length > 0 %}
+            <div class="mb-4 flex justify-between items-center">
+                <p class="text-gray-400">
+                    {{ translations.translate('admin.showing_projects', {'count': projects|length}) }}
+                </p>
+                <div>
+                    <label for="language-selector" class="text-sm mr-2">{{ translations.translate('admin.view_in') }}:</label>
+                    <select 
+                        id="language-selector" 
+                        class="bg-[var(--color-background)] border border-[var(--color-primary)] rounded-md text-sm p-1"
+                        onchange="window.location.href = '/admin/projects?lang=' + this.value{% if request.getQuery('status') %} + '&status={{ request.getQuery('status') }}'{% endif %}{% if request.getQuery('type') %} + '&type={{ request.getQuery('type') }}'{% endif %}{% if request.getQuery('search') %} + '&search={{ request.getQuery('search') }}'{% endif %};"
+                    >
+                        {% for lang in languages %}
+                            <option value="{{ lang.code }}" {% if language == lang.code %}selected{% endif %}>
+                                {{ lang.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-700">
+                    <thead>
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                {{ translations.translate('admin.project_title') }}
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                {{ translations.translate('admin.project_type') }}
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                {{ translations.translate('admin.project_status') }}
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                {{ translations.translate('admin.date') }}
+                            </th>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                {{ translations.translate('admin.actions') }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        {% for project in projects %}
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium">{{ project.title }}</div>
+                                    {% if project.subtitle %}
+                                        <div class="text-xs text-gray-400">{{ project.subtitle }}</div>
+                                    {% endif %}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm">{{ project.type|upper }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                        {% if project.status == 'current' %}
+                                            bg-green-900 text-green-300
+                                        {% elseif project.status == 'past' %}
+                                            bg-blue-900 text-blue-300
+                                        {% else %}
+                                            bg-gray-900 text-gray-300
+                                        {% endif %}
+                                    ">
+                                        {{ translations.translate('admin.status_' ~ project.status) }}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    {% if project.status == 'current' %}
+                                        {{ translations.translate('admin.since') }} {{ project.start_date|date('M Y') }}
+                                    {% else %}
+                                        {{ project.start_date|date('M Y') }}
+                                        {% if project.end_date %}
+                                            - {{ project.end_date|date('M Y') }}
+                                        {% endif %}
+                                    {% endif %}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <div class="flex justify-end space-x-2">
+                                        <a href="/admin/project/edit/{{ project.id }}" class="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)]">
+                                            {{ translations.translate('admin.edit') }}
+                                        </a>
+                                        <form action="/admin/project/delete/{{ project.id }}" method="post" class="inline" onsubmit="return confirm('{{ translations.translate('admin.confirm_delete') }}')">
+                                            <button type="submit" class="text-red-500 hover:text-red-400">
+                                                {{ translations.translate('admin.delete') }}
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="py-12 text-center">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <h3 class="mt-2 text-sm font-medium text-gray-300">{{ translations.translate('admin.no_projects') }}</h3>
+                <p class="mt-1 text-sm text-gray-400">{{ translations.translate('admin.get_started_by_creating') }}</p>
+                <div class="mt-6">
+                    <a href="/admin/project/new" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)]">
+                        <span class="mr-2">+</span> {{ translations.translate('admin.add_project') }}
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
